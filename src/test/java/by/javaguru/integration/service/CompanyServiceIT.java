@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestConstructor;
 
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -34,6 +36,10 @@ public class CompanyServiceIT {
         var expectedResult = CompanyDto.builder()
                 .id(COMPANY_ID)
                 .name(COMPANY_NAME)
+                .locales(Map.of(
+                        "en", "Google description",
+                        "ru", "Google описание"
+                ))
                 .build();
         actualResult.ifPresent(actual -> assertEquals(expectedResult, actual));
        }

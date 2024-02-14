@@ -2,7 +2,6 @@ package by.javaguru.unit;
 
 import by.javagury.spring.database.entity.Company;
 import by.javagury.spring.database.repository.CompanyRepository;
-import by.javagury.spring.dto.CompanyDto;
 import by.javagury.spring.listener.EntityEvent;
 import by.javagury.spring.mapper.CompanyToDto;
 import by.javagury.spring.service.CompanyService;
@@ -20,7 +19,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+
 
 @ExtendWith(MockitoExtension.class)
 class CompanyServiceTest {
@@ -40,8 +39,11 @@ class CompanyServiceTest {
     void findById() {
         Mockito.doReturn(Optional.of(Company.builder()
                         .id(COMPANY_ID)
-                        .name("Google")
-                        .locales(Map.of())
+                        .name(COMPANY_NAME)
+                        .locales(Map.of(
+                                "en", "Google description",
+                                "ru", "Google описание"
+                        ))
                         .build()))
                 .when(companyRepository).findById(COMPANY_ID);
 
@@ -56,7 +58,10 @@ class CompanyServiceTest {
         var expectedResult = Optional.ofNullable(Company.builder()
                 .id(COMPANY_ID)
                 .name(COMPANY_NAME)
-                .locales(Map.of())
+                .locales(Map.of(
+                        "en", "Google description",
+                        "ru", "Google описание"
+                ))
                 .build());
 
         System.out.println(expectedResult + " expectedResult");

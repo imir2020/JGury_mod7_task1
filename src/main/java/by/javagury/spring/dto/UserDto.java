@@ -11,7 +11,6 @@ import java.time.LocalDate;
 
 @Value
 @Builder
-//@Component
 public class UserDto {
     Long id;
     String username;

@@ -6,7 +6,7 @@ import by.javagury.spring.mapper.interfaces.DtoToUserMapper;
 
 public class DtoToUser {
 
-    public User mapfrom(UserDto userDto){
+    public User mapFrom(UserDto userDto){
         return DtoToUserMapper.INSTANCE.fromDtoToUser(userDto);
     }
 }
