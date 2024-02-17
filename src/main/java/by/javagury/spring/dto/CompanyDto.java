@@ -6,7 +6,6 @@ import java.util.Map;
 
 @Value
 @Builder
-
 public class CompanyDto{
     Integer id;
     String name;

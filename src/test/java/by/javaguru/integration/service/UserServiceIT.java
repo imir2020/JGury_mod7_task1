@@ -1,20 +1,13 @@
 package by.javaguru.integration.service;
 
-import by.javagury.spring.database.entity.Company;
 import by.javagury.spring.database.entity.Role;
 import by.javagury.spring.database.entity.User;
-import by.javagury.spring.database.repository.UserRepository;
-import by.javagury.spring.dto.CompanyDto;
 import by.javagury.spring.dto.UserDto;
-import by.javagury.spring.mapper.UserToDto;
 import by.javagury.spring.service.UserService;
 import by.javaguru.annotation.IT;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.test.context.TestConstructor;
-
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,7 +25,7 @@ public class UserServiceIT {
 
 
     @Test
-    void test() {
+    void saveUser() {
         var user = User.builder()
                 .username(COMPANY_NAME)
                 .birthDate(LocalDate.parse("2003-03-30"))

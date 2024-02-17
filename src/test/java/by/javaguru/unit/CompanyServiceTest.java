@@ -2,6 +2,7 @@ package by.javaguru.unit;
 
 import by.javagury.spring.database.entity.Company;
 import by.javagury.spring.database.repository.CompanyRepository;
+import by.javagury.spring.dto.CompanyDto;
 import by.javagury.spring.listener.EntityEvent;
 import by.javagury.spring.mapper.CompanyToDto;
 import by.javagury.spring.service.CompanyService;
@@ -37,25 +38,20 @@ class CompanyServiceTest {
 
     @Test
     void findById() {
-        Mockito.doReturn(Optional.of(Company.builder()
-                        .id(COMPANY_ID)
-                        .name(COMPANY_NAME)
-                        .locales(Map.of(
-                                "en", "Google description",
-                                "ru", "Google описание"
-                        ))
-                        .build()))
-                .when(companyRepository).findById(COMPANY_ID);
-
-        /*
-        Здесь метод возвращает пустое значение
-         */
+        Mockito.when(companyRepository.findById(COMPANY_ID)).thenReturn(Optional.of(Company.builder()
+                .id(COMPANY_ID)
+                .name(COMPANY_NAME)
+                .locales(Map.of(
+                        "en", "Google description",
+                        "ru", "Google описание"
+                ))
+                .build()));
         var actualResult = companyService.findById(COMPANY_ID);
         System.out.println(actualResult + " It is actual");
         assertTrue(actualResult.isPresent());
 
 
-        var expectedResult = Optional.ofNullable(Company.builder()
+        var expectedResult = Optional.ofNullable(CompanyDto.builder()
                 .id(COMPANY_ID)
                 .name(COMPANY_NAME)
                 .locales(Map.of(
@@ -63,10 +59,8 @@ class CompanyServiceTest {
                         "ru", "Google описание"
                 ))
                 .build());
-
-        System.out.println(expectedResult + " expectedResult");
         actualResult.ifPresent(actual -> assertEquals(expectedResult.get(), actual));
-        verify(companyService).findById(COMPANY_ID);
+        verify(companyRepository).findById(COMPANY_ID);
         verify(eventPublisher).publishEvent(any(EntityEvent.class));
     }
 }

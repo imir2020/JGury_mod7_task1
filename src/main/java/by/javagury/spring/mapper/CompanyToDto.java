@@ -3,6 +3,7 @@ package by.javagury.spring.mapper;
 import by.javagury.spring.database.entity.Company;
 import by.javagury.spring.dto.CompanyDto;
 import by.javagury.spring.mapper.interfaces.CompanyToDtoMapper;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +11,15 @@ import org.springframework.stereotype.Component;
 @ToString
 public class CompanyToDto {
 
-    public CompanyDto mapFrom(Company company){
+    public CompanyDto mapFrom(Company company) {
         return CompanyToDtoMapper.INSTANCE.fromCompanyToDto(company);
+    }
+
+    public CompanyDto mapFromTest(Company company) {
+        return CompanyDto.builder()
+                .id(company.getId())
+                .name(company.getName())
+                .locales(company.getLocales())
+                .build();
     }
 }
