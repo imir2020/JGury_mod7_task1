@@ -1,6 +1,5 @@
 package by.javagury.spring.service;
 
-import by.javagury.spring.database.entity.Company;
 import by.javagury.spring.database.repository.CompanyRepository;
 import by.javagury.spring.dto.CompanyDto;
 import by.javagury.spring.listener.AccessType;

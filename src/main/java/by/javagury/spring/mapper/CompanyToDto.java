@@ -14,12 +14,4 @@ public class CompanyToDto {
     public CompanyDto mapFrom(Company company) {
         return CompanyToDtoMapper.INSTANCE.fromCompanyToDto(company);
     }
-
-    public CompanyDto mapFromTest(Company company) {
-        return CompanyDto.builder()
-                .id(company.getId())
-                .name(company.getName())
-                .locales(company.getLocales())
-                .build();
-    }
 }
